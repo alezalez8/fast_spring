@@ -1,15 +1,21 @@
 package main;
 
 
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
-@Component
-//@Scope(value = "prototype")
+/*@Component
+@Lazy
+@Scope(BeanDefinition.SCOPE_PROTOTYPE)*/
 public class Parrot {
     private String name;
+    private static int idParrot = 1;
+
+
 
    /* @PostConstruct
     public void init() {
@@ -17,7 +23,8 @@ public class Parrot {
     }*/
 
     public Parrot() {
-        System.out.println("Parrot created");
+        idParrot++;
+        System.out.println("Parrot created, id = " + idParrot);
     }
 
     public String getName() {
@@ -30,6 +37,6 @@ public class Parrot {
 
     @Override
     public String toString() {
-        return "Parrot " + this.name;
+        return "Parrot " + this.name + " and id = " + idParrot;
     }
 }

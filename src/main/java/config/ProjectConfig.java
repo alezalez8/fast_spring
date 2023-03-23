@@ -1,16 +1,25 @@
 package config;
 
-import main.Parrot;
-import main.Person;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
+import aspects.LoggingAspect;
+import org.springframework.context.annotation.*;
+import repositories.CommentRepository;
+import repositories.DBCommentRepository;
 
 
 @Configuration
-@ComponentScan(basePackages = "main")
+@ComponentScan(basePackages = {"proxies", "services", "repositories", "main", "messages"})
+@EnableAspectJAutoProxy
 public class ProjectConfig {
+
+    @Bean
+    public CommentRepository commentRepository() {
+        return new DBCommentRepository();
+    }
+
+    @Bean
+    public LoggingAspect logginAspect() {
+        return new LoggingAspect();
+    }
 
    /* @Bean
     public Parrot parrot() {

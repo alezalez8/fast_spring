@@ -3,7 +3,7 @@ package main;
 import org.springframework.stereotype.Component;
 
 //@Scope(value = "single")
-@Component
+//@Component
 public class Person {
     private String name = "Ella";
 
