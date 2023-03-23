@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class LoggingAspect {
 
     private Logger logger = Logger.getLogger(LoggingAspect.class.getName());
-    //private final CustomMessages customMessages = new CustomMessages();
+    private final CustomMessages customMessages = new CustomMessages();
 
     @Around("execution(* services.*.*(..))")
     public Object log(ProceedingJoinPoint joinPoint) throws Throwable {
