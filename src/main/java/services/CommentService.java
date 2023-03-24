@@ -1,5 +1,6 @@
 package services;
 
+import aspects.ToLog;
 import model.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,31 +15,22 @@ import java.util.logging.Logger;
 
 @Service
 public class  CommentService {
-
-   /* private final   CommentRepository commentRepository;
-
-    private final   CommentNotificationProxy commentNotificationProxy;
-
-
-    @Autowired
-    public CommentService(CommentRepository commentRepository,
-                          @Qualifier("EMAIL") CommentNotificationProxy commentNotificationProxy) {
-        this.commentRepository = commentRepository;
-        this.commentNotificationProxy = commentNotificationProxy;
-    }
-
-    public void publishComment(Comment comment) {
-        commentRepository.storeComment(comment);
-        commentNotificationProxy.sendComment(comment);
-    }*/
-
-
     private Logger logger = Logger.getLogger(CommentService.class.getName());
 
 
+    @ToLog
     public String publishComment(Comment comment) {
         logger.info("Publishing comment:" + comment.getText());
         return "SUCCESS";
+    }
+
+
+    public void deleteComment(Comment comment) {
+        logger.info("Deleting comment:" + comment.getText());
+    }
+
+    public void editComment(Comment comment) {
+        logger.info("Editing comment:" + comment.getText());
     }
 
     public void setLogger(Logger logger) {

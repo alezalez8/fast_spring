@@ -13,19 +13,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        var context = new AnnotationConfigApplicationContext(ProjectConfig.class);
+        var c = new AnnotationConfigApplicationContext(ProjectConfig.class);
 
-        var service = context.getBean(CommentService.class);
+        var service = c.getBean(CommentService.class);
 
         Comment comment = new Comment();
         comment.setText("Demo comment");
         comment.setAuthor("Natasha");
 
-        String value = service.publishComment(comment);
-        logger.info(value);
         service.publishComment(comment);
-
-
-
+        service.deleteComment(comment);
+        service.editComment(comment);
     }
+
+
 }
+
